@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
@@ -12,6 +13,8 @@ const Index = () => {
     phone: '',
     message: ''
   });
+  
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +36,58 @@ const Index = () => {
             <a href="#portfolio" className="text-foreground hover:text-primary transition-colors">Портфолио</a>
             <a href="#contacts" className="text-foreground hover:text-primary transition-colors">Контакты</a>
           </div>
-          <Button className="hidden md:block">Связаться</Button>
+          <div className="flex items-center gap-4">
+            <Button className="hidden md:block">Связаться</Button>
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden">
+                  <Icon name="Menu" size={24} />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px]">
+                <div className="flex flex-col space-y-6 mt-8">
+                  <a 
+                    href="#home" 
+                    className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Главная
+                  </a>
+                  <a 
+                    href="#about" 
+                    className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    О компании
+                  </a>
+                  <a 
+                    href="#services" 
+                    className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Услуги
+                  </a>
+                  <a 
+                    href="#portfolio" 
+                    className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Портфолио
+                  </a>
+                  <a 
+                    href="#contacts" 
+                    className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Контакты
+                  </a>
+                  <Button className="w-full mt-4" onClick={() => setMobileMenuOpen(false)}>
+                    Связаться
+                  </Button>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </nav>
       </header>
 
